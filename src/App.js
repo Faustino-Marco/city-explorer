@@ -1,6 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import Image from 'react-bootstrap/Image';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -11,6 +15,8 @@ class App extends React.Component {
       city: '',
       cityInfo: {},
       cityMap: '',
+      errorMessage: ''
+
     }
   };
 
@@ -47,20 +53,21 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <h1>City Explorer</h1>
-        <p>Search for a city: </p>
-        <form onSubmit={this.handleCityInput}>
-          <input type="text" onInput={this.handleCityInput}></input>
-        </form>
-        <ul>
-          <li>{'City Name: ' + this.state.cityInfo.display_name}</li>
-          <li>{'Latitude: ' + this.state.cityInfo.lat}</li>
-          <li>{'Longitude: ' + this.state.cityInfo.lat}</li>
-        <Image src={this.state.cityMap}></Image>
-        </ul>
-        <form onSubmit={this.handleSubmit}>
-          <button type="submit">Explore!</button>
-        </form>
+        <h1>Ready to Explore?</h1>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Label column="lg" lg={2}><p>Pick a City:</p>
+            <input onChange={this.handleCityInput} type="text" />
+          </Form.Label>
+          <Button type="submit">Explore!</Button>
+        </Form>
+        {this.state.error ? <Alert variant="danger">{this.state.errorMessage}</Alert> :
+          <ListGroup>
+            <ListGroup.Item>{'City Name: ' + this.state.cityInfo.display_name}</ListGroup.Item>
+            <ListGroup.Item>{'Latitude: ' + this.state.cityInfo.lat}</ListGroup.Item>
+            <ListGroup.Item>{'Longitude: ' + this.state.cityInfo.lon}</ListGroup.Item>
+            <Image src={this.state.cityMap}></Image>
+          </ListGroup>
+        }
       </>
     );
   }
