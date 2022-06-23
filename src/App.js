@@ -7,6 +7,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       city: '',
+      cityInfo: {},
+      cityMap: '',
     }
   };
 
@@ -19,11 +21,24 @@ class App extends React.Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(this.state.city);
-    //request to api -- data from state
-    let url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`;
-    let cityInfo = await axios.get(url);
-    console.log(cityInfo.data[0]);
+    try {
+
+      console.log(this.state.city);
+      //request to api -- data from state
+      let url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`;
+      let cityInfo = await axios.get(url);
+      let cityMap = await `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${cityInfo.data[0]}.lat,${cityInfo.data[0].lon}&zoom=10`;
+      console.log(cityInfo.data[0]);
+      this.setState({
+        cityInfo: cityInfo.data[0],
+        cityMap: cityMap,
+      })
+    } catch (error) {
+      this.setState({
+        error: true,
+        errorMessage: `An Error Occurred: ${error.response.status}. Please refresh the page and try again.`
+      });
+    };
   };
 
   render() {
@@ -35,13 +50,14 @@ class App extends React.Component {
           <input type="text" onInput={this.handleCityInput}></input>
         </form>
         <ul>
-          {cityInfo}
+          {/* {cityInfo} */}
         </ul>
         <form onSubmit={this.handleSubmit}>
           <button type="submit">Explore!</button>
         </form>
       </>
     );
-  }}
+  }
+}
 
 export default App;
