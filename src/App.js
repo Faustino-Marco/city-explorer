@@ -15,7 +15,14 @@ class App extends React.Component {
       city: '',
       cityInfo: {},
       cityMap: '',
-      errorMessage: ''
+      errorMessage: '',
+      dayOneDateTime: '',
+      dayOneDescription: '',
+      dayTwoDateTime: '',
+      dayTwoDescription: '',
+      dayThreeDateTime: '',
+      dayThreeDescription: '',
+      
 
     }
   };
@@ -25,6 +32,21 @@ class App extends React.Component {
       city: e.target.value,
     });
     console.log(e.target.value);
+  };
+
+  handleWeatherRequest = async (city) => {
+    let url = `http://localhost:${process.env.REACT_APP_SERVER}/weather?lat=${this.state.cityInfo.data[0].lat}&lon=${this.state.cityInfo.data[0].lon}`
+    let weatherInfo = await axios.get(url);
+    console.log(weatherInfo);
+    this.setState({
+      dayOneDateTime: weatherInfo.data[0].dateTime,
+      dayOneDescription: weatherInfo.data[0].description,
+      dayTwoDateTime: weatherInfo.data[1].dateTime,
+      dayTwoDescription: weatherInfo.data[1].description,
+      dayThreeDateTime: weatherInfo.data[2].dateTime,
+      dayThreeDescription: weatherInfo.data[2].description,
+
+    });
   };
 
   handleSubmit = async (e) => {
@@ -40,7 +62,7 @@ class App extends React.Component {
 
       this.setState({
         cityInfo: cityInfo.data[0],
-        cityMap: cityMap,
+        cityMap: cityMap
       })
     } catch (error) {
       this.setState({
@@ -48,6 +70,7 @@ class App extends React.Component {
         errorMessage: `An Error Occurred: ${error.response.status}. Please refresh the page and try again.`
       });
     };
+    this.handleWeatherRequest(this.state.city);
   };
 
   render() {
@@ -63,11 +86,17 @@ class App extends React.Component {
         {this.state.error ? <Alert variant="danger">{this.state.errorMessage}</Alert> :
           <ListGroup>
             <ListGroup.Item>{'City Name: ' + this.state.cityInfo.display_name}</ListGroup.Item>
-            <ListGroup.Item>{'Latitude: ' + this.state.cityInfo.lat}</ListGroup.Item>
-            <ListGroup.Item>{'Longitude: ' + this.state.cityInfo.lon}</ListGroup.Item>
+            <ListGroup.Item>{`Latitude:  ${this.state.cityInfo.lat}`}</ListGroup.Item>
+            <ListGroup.Item>{`Longitude: ${this.state.cityInfo.lon}`}</ListGroup.Item>
+            <ListGroup.Item>{`${this.state.dayOneDateTime}: ${this.state.dayOneDescription}`}</ListGroup.Item>
+            <ListGroup.Item>{`${this.state.dayTwoDateTime}: ${this.state.dayTwoDescription}`}</ListGroup.Item>
+            <ListGroup.Item>{`${this.state.dayThreeDateTime}: ${this.state.dayThreeDescription}`}</ListGroup.Item>
             <Image src={this.state.cityMap}></Image>
           </ListGroup>
         }
+          <ul>
+            <li></li>
+          </ul>
       </>
     );
   }
