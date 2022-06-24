@@ -31,11 +31,13 @@ class App extends React.Component {
     this.setState({
       city: e.target.value,
     });
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   handleWeatherRequest = async (city) => {
-    let url = `http://localhost:${process.env.REACT_APP_SERVER}/weather?lat=${this.state.cityInfo.data[0].lat}&lon=${this.state.cityInfo.data[0].lon}`
+    console.log('weather');
+    console.log('args: ', city);
+    let url = `${process.env.REACT_APP_SERVER}/weather?lat=${city.lat}&lon=${city.lon}`
     let weatherInfo = await axios.get(url);
     console.log(weatherInfo);
     this.setState({
@@ -53,7 +55,7 @@ class App extends React.Component {
     e.preventDefault();
     try {
 
-      console.log(this.state.city);
+      // console.log(this.state.city);
       //request to api -- data from state
       let url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`;
       let cityInfo = await axios.get(url);
@@ -64,13 +66,13 @@ class App extends React.Component {
         cityInfo: cityInfo.data[0],
         cityMap: cityMap
       })
+      this.handleWeatherRequest(cityInfo.data[0]);
     } catch (error) {
       this.setState({
         error: true,
         errorMessage: `An Error Occurred: ${error.response.status}. Please refresh the page and try again.`
       });
     };
-    this.handleWeatherRequest(this.state.city);
   };
 
   render() {
