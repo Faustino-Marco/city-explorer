@@ -1,3 +1,43 @@
+# City Explorer
+
+**Author**: Faustino Marco Simpliciano
+**Version**: 5.1.1 (increment the patch/fix version number if you make more commits past your first submission)
+
+## Overview
+<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
+
+## Getting Started
+<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+
+## Architecture
+<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+
+## Change Log
+<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
+
+01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+
+## Credit and Collaborations
+<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+
+## WRRC Diagrams
+### Lab 06
+![lab 6 WRRC](/img/Lab%206%20Partner%20Diagram%20301d86%20Jamall%2C%20Marco.jpg)
+
+## Time Estimates
+
+### Name of feature: City Info & Map
+
+- Estimate of time needed to complete: 1.5hrs
+
+- Start time: 8pm?
+
+- Finish time: 10pm
+
+- Actual time needed to complete: 2hrs
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
