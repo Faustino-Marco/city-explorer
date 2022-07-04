@@ -24,6 +24,9 @@
 ### Lab 06
 ![lab 6 WRRC](/img/Lab%206%20Partner%20Diagram%20301d86%20Jamall%2C%20Marco.jpg)
 
+### Lab 07
+![Lab 7 WRRC](/img/301d86%20Lab%2007%20Stephen%2C%20Marco%20.jpg)
+
 ## Time Estimates
 
 ### Name of feature: City Info & Map
@@ -35,6 +38,16 @@
 - Finish time: 10pm
 
 - Actual time needed to complete: 2hrs
+
+### ### Name of feature: City Info & Map
+
+- Estimate of time needed to complete: 2hrs
+
+- Start time: 11pm?
+
+- Finish time: 2am
+
+- Actual time needed to complete: 3hrs
 
 
 
