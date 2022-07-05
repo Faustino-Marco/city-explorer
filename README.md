@@ -39,7 +39,7 @@
 
 - Actual time needed to complete: 2hrs
 
-### ### Name of feature: City Info & Map
+### ### Name of feature: Weather Forecast
 
 - Estimate of time needed to complete: 2hrs
 
@@ -48,6 +48,16 @@
 - Finish time: 2am
 
 - Actual time needed to complete: 3hrs
+
+### ### Name of feature: Movies API
+
+- Estimate of time needed to complete: 45minutes
+
+- Start time: 315am?
+
+- Finish time: 7am
+
+- Actual time needed to complete: probably about 3hrs in total as I couldn't figure out how to arrange the movies component for the longest time
 
 
 
