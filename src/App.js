@@ -9,6 +9,7 @@ import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Movie from './Movie';
+import Weather from './Weather';
 
 
 class App extends React.Component {
@@ -25,8 +26,8 @@ class App extends React.Component {
       dayTwoDescription: '',
       dayThreeDateTime: '',
       dayThreeDescription: '',
-      moviesArr: []
-
+      moviesArr: [],
+      weatherArr: []
 
     }
   };
@@ -51,14 +52,15 @@ class App extends React.Component {
   handleWeatherRequest = async (city) => {
     let url = `${process.env.REACT_APP_SERVER}/weather?lat=${city.lat}&lon=${city.lon}`
     let weatherInfo = await axios.get(url);
+    console.log(weatherInfo.data);
     this.setState({
-      dayOneDateTime: weatherInfo.data[0].dateTime,
-      dayOneDescription: weatherInfo.data[0].description,
-      dayTwoDateTime: weatherInfo.data[1].dateTime,
-      dayTwoDescription: weatherInfo.data[1].description,
-      dayThreeDateTime: weatherInfo.data[2].dateTime,
-      dayThreeDescription: weatherInfo.data[2].description,
-
+      weatherArr: weatherInfo.data,
+      // dayOneDateTime: weatherInfo.data[0].dateTime,
+      // dayOneDescription: weatherInfo.data[0].description,
+      // dayTwoDateTime: weatherInfo.data[1].dateTime,
+      // dayTwoDescription: weatherInfo.data[1].description,
+      // dayThreeDateTime: weatherInfo.data[2].dateTime,
+      // dayThreeDescription: weatherInfo.data[2].description,
     });
   };
 
@@ -97,6 +99,18 @@ class App extends React.Component {
         />
       )
     );
+
+    let weather = this.state.weatherArr.map(
+      (forecast, idx) => (
+        <Weather 
+          dateTime={forecast.dateTime}
+          description={forecast.description}
+          dagger={idx}
+        />
+      )
+    );
+
+
     return (
       <>
         <h1>Ready to Explore?</h1>
@@ -109,7 +123,8 @@ class App extends React.Component {
         {this.state.error ? <Alert variant="danger">{this.state.errorMessage}</Alert> :
           <>
             <ListGroup>
-              <ListGroup.Item>{'City: ' + this.state.cityInfo.display_name}</ListGroup.Item>
+              {weather}
+              {/* <ListGroup.Item>{'City: ' + this.state.cityInfo.display_name}</ListGroup.Item>
               <ListGroup.Item>{`Latitude:  ${this.state.cityInfo.lat}`}</ListGroup.Item>
               <ListGroup.Item>{`Longitude: ${this.state.cityInfo.lon}`}</ListGroup.Item>
               <hr></hr>
@@ -118,7 +133,7 @@ class App extends React.Component {
               <ListGroup.Item>{`${this.state.dayTwoDateTime}: ${this.state.dayTwoDescription}`}</ListGroup.Item>
               <ListGroup.Item>{`${this.state.dayThreeDateTime}: ${this.state.dayThreeDescription}`}</ListGroup.Item>
               <Image src={this.state.cityMap}></Image>
-              <hr></hr>
+              <hr></hr> */}
             </ListGroup>
             <Container>
               <Row lg={4}>
