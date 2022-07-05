@@ -51,14 +51,15 @@ class App extends React.Component {
   handleWeatherRequest = async (city) => {
     let url = `${process.env.REACT_APP_SERVER}/weather?lat=${city.lat}&lon=${city.lon}`
     let weatherInfo = await axios.get(url);
+    console.log(weatherInfo);
     this.setState({
-      dayOneDateTime: weatherInfo.data[0].dateTime,
-      dayOneDescription: weatherInfo.data[0].description,
-      dayTwoDateTime: weatherInfo.data[1].dateTime,
-      dayTwoDescription: weatherInfo.data[1].description,
-      dayThreeDateTime: weatherInfo.data[2].dateTime,
-      dayThreeDescription: weatherInfo.data[2].description,
-
+      weatherArr: weatherInfo.data,
+      // dayOneDateTime: weatherInfo.data[0].dateTime,
+      // dayOneDescription: weatherInfo.data[0].description,
+      // dayTwoDateTime: weatherInfo.data[1].dateTime,
+      // dayTwoDescription: weatherInfo.data[1].description,
+      // dayThreeDateTime: weatherInfo.data[2].dateTime,
+      // dayThreeDescription: weatherInfo.data[2].description,
     });
   };
 
@@ -97,6 +98,16 @@ class App extends React.Component {
         />
       )
     );
+
+    let weather = this.state.weatherArr.map(
+      (forecast, idx) => (
+        <Weather 
+          dateTime={forecast.dateTime}
+          description={forecast.description}
+        />
+
+      )
+    )
     return (
       <>
         <h1>Ready to Explore?</h1>
