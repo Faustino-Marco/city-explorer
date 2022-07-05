@@ -27,6 +27,9 @@
 ### Lab 07
 ![Lab 7 WRRC](/img/301d86%20Lab%2007%20Stephen%2C%20Marco%20.jpg)
 
+### Lab 08
+![Lab 8 WRRC](/img/Flowchart.jpg)
+
 ## Time Estimates
 
 ### Name of feature: City Info & Map
