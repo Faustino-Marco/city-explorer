@@ -59,6 +59,26 @@
 
 - Actual time needed to complete: probably about 3hrs in total as I couldn't figure out how to arrange the movies component for the longest time
 
+### Name of feature: Components/Modules
+
+- Estimate of time needed to complete: 1hr
+
+- Start time: 5:30pm
+
+- Finish time: 7pm
+
+- Actual time needed to complete: 1.5hrs
+
+### Name of feature: Cache Buildout
+
+- Estimate of time needed to complete: 1hr
+
+- Start time: 7:30pm
+
+- Finish time: 8pm
+
+- Actual time needed to complete: 30min
+
 
 
 # Getting Started with Create React App
